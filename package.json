@@ -5,6 +5,9 @@
   "main": "server.js",
   "repository": "",
   "author": "Wuhui Zuo <wuhuizuo@126.com>",
+  "scripts": {
+    "start": "server.js"
+  },
   "dependencies": {
     "express": "~>4.x"
   },
