@@ -2180,7 +2180,6 @@ var SecondaryToolbar = {
   viewBookmarkClick: function secondaryToolbarViewBookmarkClick(evt) {
     this.close();
   },
-
   firstPageClick: function secondaryToolbarFirstPageClick(evt) {
     PDFViewerApplication.page = 1;
     this.close();
