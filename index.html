@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
-  <head>
-    <meta charset="utf-8">
-    <meta name="google" content="notranslate">
-    <title>Cloud PDF Reader</title>
-  </head>
-  <body>
-  </body>
+<html ng-app>
+    <head>
+        <script src="angular.min.js"></script>
+    </head>
+    <body>
+        Your name: <input type="text" ng-model="yourname" placeholder="World">
+        <hr>
+        Hello {{yourname || 'World'}}!
+    </body>
 </html>
