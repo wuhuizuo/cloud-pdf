@@ -7,7 +7,7 @@ app.listen(process.env.PORT, process.env.IP, function() {
 
 app.use('/viewer', express.static('viewer'));
 app.use('/books', express.static('books'));
-
+app.use(express.static('static'))
 
 app.use(function(req, res) {
   res.type('text/plain');
