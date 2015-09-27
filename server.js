@@ -1,8 +1,9 @@
 var express = require('express')
 var app = express();
 
-app.listen(process.env.PORT, process.env.IP, function() {
-  console.log('Server started on ' + process.env.IP + ':' + process.env.PORT)
+app.set('port', process.env.PORT || 3000)
+app.listen(app.get('port'), function() {
+  console.log('Server started on ' + app.get('port'))
 });
 
 app.use('/viewer', express.static('viewer'));

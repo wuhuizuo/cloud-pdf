@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Cloud PDF</title>
+    <title>Guess The Number !</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -16,13 +16,42 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="app">
     <h1>Hello, world!</h1>
     <script src="js/jquery.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    Your name: <input type="text" ng-model="yourname" placeholder="World">
-    <hr>
-    Hello {{yourname || 'World'}}!
+
+    <div class="container" ng-controller="GuessTheNumberController">
+      <h2>Guess the Number !</h2>
+      <p class='well lead'>Guess the computer generated random number between 1 and 1000.</p>
+      <label>Your Guess: </label><input type="number" ng-model="guess"/>
+      <button ng-click="verifyGuess()" class="btn btn-primary btn-sm">Verify</button>
+      <button ng-click="initializeGame()" class="btn btn-warning btn-sm">Restart</button>
+      <p>
+        <p ng-show='deviation<0' class="alert alert-warning">Your guess is higher.</p>
+        <p ng-show='deviation>0' class="alert alert-warning">Your guess is lower.</p>
+        <p ng-show='deviation===0' class="alert alert-success">yes, that is it.</p>
+      </p>
+      <p class="text-info">No of guesses : <span class="badge">{{noOfTries}}</span></p>
+    </div>
+    
+    <script>
+      angular.module('app',[])
+      .controller('GuessTheNumberController', GuessTheNumberController);
+      function GuessTheNumberController($scope) {
+        $scope.verifyGuess = function () {
+          $scope.deviation = $scope.original -$scope.guess;
+          $scope.noOfTries = $scope.noOfTries + 1;
+        };
+        $scope.initializeGame = function () {
+          $scope.noOfTries = 0;
+          $scope.original = Math.floor((Math.random() * 10000) + 1);
+          $scope.guess = null;
+          $scope.deviation = null;
+        };
+        $scope.initializeGame();
+      };
+    </script>
   </body>
 </html>
